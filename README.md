@@ -1,2 +1,2 @@
-# W-C_SCRIPT
+# WAC_SCRIPT
 Script d'aide a la [ création, suppression, clonage] de Repo, [création , suppression, upload] de clé SSH.
