@@ -1,4 +1,5 @@
-# WAC_SCRIPT
+# W@C SCRIPT EPITECH
+
 Script d'aide a la [ création, suppression, clonage] de Repo, [création , suppression, upload] de clé SSH.
 
 
