@@ -1,0 +1,614 @@
+"""users comments."""
+type Comments {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  user: UsersPermissionsUser
+  comment: String
+  createdAt: DateTime
+  UpdatedAt: DateTime
+  Active: Boolean
+  hotel: Hotels
+  plane: Planes
+  restaurant: Restaurants
+  likes(sort: String, limit: Int, start: Int, where: JSON): [Likes]
+}
+
+input CommentsInput {
+  user: ID
+  comment: String
+  createdAt: DateTime
+  UpdatedAt: DateTime
+  Active: Boolean
+  likes: [ID]
+  hotel: ID
+  plane: ID
+  restaurant: ID
+}
+
+input createCommentsInput {
+  data: CommentsInput
+}
+
+type createCommentsPayload {
+  comment: Comments
+}
+
+input createHotelsInput {
+  data: HotelsInput
+}
+
+type createHotelsPayload {
+  hotel: Hotels
+}
+
+input createLikesInput {
+  data: LikesInput
+}
+
+type createLikesPayload {
+  like: Likes
+}
+
+input createPlanesInput {
+  data: PlanesInput
+}
+
+type createPlanesPayload {
+  plane: Planes
+}
+
+input createRestaurantsInput {
+  data: RestaurantsInput
+}
+
+type createRestaurantsPayload {
+  restaurant: Restaurants
+}
+
+input createRoleInput {
+  data: RoleInput
+}
+
+type createRolePayload {
+  role: UsersPermissionsRole
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+"""
+The `DateTime` scalar represents a date and time following the ISO 8601 standard
+"""
+scalar DateTime
+
+input deleteCommentsInput {
+  where: InputID
+}
+
+type deleteCommentsPayload {
+  comment: Comments
+}
+
+input deleteHotelsInput {
+  where: InputID
+}
+
+type deleteHotelsPayload {
+  hotel: Hotels
+}
+
+input deleteLikesInput {
+  where: InputID
+}
+
+type deleteLikesPayload {
+  like: Likes
+}
+
+input deletePlanesInput {
+  where: InputID
+}
+
+type deletePlanesPayload {
+  plane: Planes
+}
+
+input deleteRestaurantsInput {
+  where: InputID
+}
+
+type deleteRestaurantsPayload {
+  restaurant: Restaurants
+}
+
+input deleteRoleInput {
+  where: InputID
+}
+
+type deleteRolePayload {
+  role: UsersPermissionsRole
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+input editCommentsInput {
+  user: ID
+  comment: String
+  createdAt: DateTime
+  UpdatedAt: DateTime
+  Active: Boolean
+  likes: [ID]
+  hotel: ID
+  plane: ID
+  restaurant: ID
+}
+
+input editFileInput {
+  name: String
+  hash: String
+  sha256: String
+  ext: String
+  mime: String
+  size: String
+  url: String
+  provider: String
+  public_id: String
+  related: [ID]
+}
+
+input editHotelsInput {
+  name: String
+  localisation: JSON
+  price: Int
+  description: String
+  available: DateTime
+  reserved: DateTime
+  pictures: [ID]
+  review: String
+  alreadyReserved: Boolean
+  likes: [ID]
+  comments: [ID]
+  user: ID
+}
+
+input editLikesInput {
+  comment: ID
+  hotels: ID
+  restaurant: ID
+  users: [ID]
+  Ative: Boolean
+  likedAt: DateTime
+  unlikedAt: DateTime
+  plane: ID
+}
+
+input editPlanesInput {
+  name: String
+  scrapping: JSON
+  pictures: ID
+  price: Int
+  available: DateTime
+  reserved: DateTime
+  alreadyReserved: Boolean
+  user: ID
+  comments: [ID]
+  likes: [ID]
+}
+
+input editRestaurantsInput {
+  name: String
+  price: Int
+  pictures: ID
+  description: String
+  contact: Int
+  type: String
+  address: String
+  website: String
+  hourly: String
+  services: String
+  language: String
+  likes: [ID]
+  comments: [ID]
+}
+
+input editRoleInput {
+  name: String
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+}
+
+input editUserInput {
+  username: String
+  email: String
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  planes: [ID]
+  comments: [ID]
+  likes: [ID]
+  hotels: [ID]
+}
+
+input FileInput {
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  public_id: String
+  related: [ID]
+}
+
+"""référencement des hôtels"""
+type Hotels {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  localisation: JSON
+  price: Int
+  description: String
+  available: DateTime
+  reserved: DateTime
+  review: String
+  alreadyReserved: Boolean
+  user: UsersPermissionsUser
+  pictures(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  likes(sort: String, limit: Int, start: Int, where: JSON): [Likes]
+  comments(sort: String, limit: Int, start: Int, where: JSON): [Comments]
+}
+
+input HotelsInput {
+  name: String
+  localisation: JSON
+  price: Int
+  description: String
+  available: DateTime
+  reserved: DateTime
+  pictures: [ID]
+  review: String
+  alreadyReserved: Boolean
+  likes: [ID]
+  comments: [ID]
+  user: ID
+}
+
+input InputID {
+  id: ID!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+"""users likes."""
+type Likes {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  comment: Comments
+  hotels: Hotels
+  restaurant: Restaurants
+  Ative: Boolean
+  likedAt: DateTime
+  unlikedAt: DateTime
+  plane: Planes
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+input LikesInput {
+  comment: ID
+  hotels: ID
+  restaurant: ID
+  users: [ID]
+  Ative: Boolean
+  likedAt: DateTime
+  unlikedAt: DateTime
+  plane: ID
+}
+
+"""The `Long` scalar type represents 52-bit integers"""
+scalar Long
+
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Comments | createCommentsPayload | updateCommentsPayload | deleteCommentsPayload | Hotels | createHotelsPayload | updateHotelsPayload | deleteHotelsPayload | Likes | createLikesPayload | updateLikesPayload | deleteLikesPayload | Planes | createPlanesPayload | updatePlanesPayload | deletePlanesPayload | Restaurants | createRestaurantsPayload | updateRestaurantsPayload | deleteRestaurantsPayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload
+
+type Mutation {
+  createComments(input: createCommentsInput): createCommentsPayload
+  updateComments(input: updateCommentsInput): updateCommentsPayload
+  deleteComments(input: deleteCommentsInput): deleteCommentsPayload
+  createHotels(input: createHotelsInput): createHotelsPayload
+  updateHotels(input: updateHotelsInput): updateHotelsPayload
+  deleteHotels(input: deleteHotelsInput): deleteHotelsPayload
+  createLikes(input: createLikesInput): createLikesPayload
+  updateLikes(input: updateLikesInput): updateLikesPayload
+  deleteLikes(input: deleteLikesInput): deleteLikesPayload
+  createPlanes(input: createPlanesInput): createPlanesPayload
+  updatePlanes(input: updatePlanesInput): updatePlanesPayload
+  deletePlanes(input: deletePlanesInput): deletePlanesPayload
+  createRestaurants(input: createRestaurantsInput): createRestaurantsPayload
+  updateRestaurants(input: updateRestaurantsInput): updateRestaurantsPayload
+  deleteRestaurants(input: deleteRestaurantsInput): deleteRestaurantsPayload
+
+  """Create a new role"""
+  createRole(input: createRoleInput): createRolePayload
+
+  """Update an existing role"""
+  updateRole(input: updateRoleInput): updateRolePayload
+
+  """Delete an existing role"""
+  deleteRole(input: deleteRoleInput): deleteRolePayload
+
+  """Create a new user"""
+  createUser(input: createUserInput): createUserPayload
+
+  """Update an existing user"""
+  updateUser(input: updateUserInput): updateUserPayload
+
+  """Delete an existing user"""
+  deleteUser(input: deleteUserInput): deleteUserPayload
+  upload(refId: ID, ref: String, source: String, file: Upload!): UploadFile!
+}
+
+"""Planes"""
+type Planes {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  scrapping: JSON
+  pictures: UploadFile
+  price: Int
+  available: DateTime
+  reserved: DateTime
+  alreadyReserved: Boolean
+  user: UsersPermissionsUser
+  comments(sort: String, limit: Int, start: Int, where: JSON): [Comments]
+  likes(sort: String, limit: Int, start: Int, where: JSON): [Likes]
+}
+
+input PlanesInput {
+  name: String
+  scrapping: JSON
+  pictures: ID
+  price: Int
+  available: DateTime
+  reserved: DateTime
+  alreadyReserved: Boolean
+  user: ID
+  comments: [ID]
+  likes: [ID]
+}
+
+type Query {
+  comment(id: ID!): Comments
+  comments(sort: String, limit: Int, start: Int, where: JSON): [Comments]
+  hotel(id: ID!): Hotels
+  hotels(sort: String, limit: Int, start: Int, where: JSON): [Hotels]
+  like(id: ID!): Likes
+  likes(sort: String, limit: Int, start: Int, where: JSON): [Likes]
+  plane(id: ID!): Planes
+  planes(sort: String, limit: Int, start: Int, where: JSON): [Planes]
+  restaurant(id: ID!): Restaurants
+  restaurants(sort: String, limit: Int, start: Int, where: JSON): [Restaurants]
+  files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  role(id: ID!): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsRole]
+  user(id: ID!): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+  me: UsersPermissionsMe
+}
+
+"""restaurants reviews."""
+type Restaurants {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String
+  price: Int
+  pictures: UploadFile
+  description: String
+  contact: Int
+  type: String
+  address: String
+  website: String
+  hourly: String
+  services: String
+  language: String
+  likes(sort: String, limit: Int, start: Int, where: JSON): [Likes]
+  comments(sort: String, limit: Int, start: Int, where: JSON): [Comments]
+}
+
+input RestaurantsInput {
+  name: String
+  price: Int
+  pictures: ID
+  description: String
+  contact: Int
+  type: String
+  address: String
+  website: String
+  hourly: String
+  services: String
+  language: String
+  likes: [ID]
+  comments: [ID]
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  permissions: [ID]
+  users: [ID]
+}
+
+input updateCommentsInput {
+  where: InputID
+  data: editCommentsInput
+}
+
+type updateCommentsPayload {
+  comment: Comments
+}
+
+input updateHotelsInput {
+  where: InputID
+  data: editHotelsInput
+}
+
+type updateHotelsPayload {
+  hotel: Hotels
+}
+
+input updateLikesInput {
+  where: InputID
+  data: editLikesInput
+}
+
+type updateLikesPayload {
+  like: Likes
+}
+
+input updatePlanesInput {
+  where: InputID
+  data: editPlanesInput
+}
+
+type updatePlanesPayload {
+  plane: Planes
+}
+
+input updateRestaurantsInput {
+  where: InputID
+  data: editRestaurantsInput
+}
+
+type updateRestaurantsPayload {
+  restaurant: Restaurants
+}
+
+input updateRoleInput {
+  where: InputID
+  data: editRoleInput
+}
+
+type updateRolePayload {
+  role: UsersPermissionsRole
+}
+
+input updateUserInput {
+  where: InputID
+  data: editUserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
+type UploadFile {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  name: String!
+  hash: String!
+  sha256: String
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  public_id: String
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  password: String
+  resetPasswordToken: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: ID
+  planes: [ID]
+  comments: [ID]
+  likes: [ID]
+  hotels: [ID]
+}
+
+type UsersPermissionsMe {
+  _id: ID!
+  username: String!
+  email: String!
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsMeRole
+}
+
+type UsersPermissionsMeRole {
+  _id: ID!
+  name: String!
+  description: String
+  type: String
+}
+
+type UsersPermissionsPermission {
+  id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  id: ID!
+  name: String!
+  description: String
+  type: String
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+}
+
+type UsersPermissionsUser {
+  id: ID!
+  username: String!
+  email: String!
+  provider: String
+  confirmed: Boolean
+  blocked: Boolean
+  role: UsersPermissionsRole
+  planes(sort: String, limit: Int, start: Int, where: JSON): [Planes]
+  comments(sort: String, limit: Int, start: Int, where: JSON): [Comments]
+  likes(sort: String, limit: Int, start: Int, where: JSON): [Likes]
+  hotels(sort: String, limit: Int, start: Int, where: JSON): [Hotels]
+}

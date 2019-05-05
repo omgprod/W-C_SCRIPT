@@ -1,0 +1,46 @@
+{
+  "connection": "default",
+  "collectionName": "likes",
+  "info": {
+    "name": "likes",
+    "description": "users likes."
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "comment": {
+      "model": "comments",
+      "via": "likes"
+    },
+    "hotels": {
+      "model": "hotels",
+      "via": "likes"
+    },
+    "restaurant": {
+      "model": "restaurants",
+      "via": "likes"
+    },
+    "users": {
+      "collection": "user",
+      "via": "likes",
+      "dominant": true,
+      "plugin": "users-permissions"
+    },
+    "Ative": {
+      "type": "boolean"
+    },
+    "likedAt": {
+      "type": "date"
+    },
+    "unlikedAt": {
+      "type": "date"
+    },
+    "plane": {
+      "model": "planes",
+      "via": "likes"
+    }
+  }
+}

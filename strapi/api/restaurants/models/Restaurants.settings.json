@@ -1,0 +1,58 @@
+{
+  "connection": "default",
+  "collectionName": "restaurants",
+  "info": {
+    "name": "restaurants",
+    "description": "restaurants reviews."
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "pictures": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "description": {
+      "type": "text"
+    },
+    "contact": {
+      "type": "integer"
+    },
+    "type": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "hourly": {
+      "type": "text"
+    },
+    "services": {
+      "type": "text"
+    },
+    "language": {
+      "type": "string"
+    },
+    "likes": {
+      "collection": "likes",
+      "via": "restaurant"
+    },
+    "comments": {
+      "collection": "comments",
+      "via": "restaurant"
+    }
+  }
+}

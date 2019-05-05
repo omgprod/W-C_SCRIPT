@@ -1,0 +1,48 @@
+{
+  "connection": "default",
+  "collectionName": "comments",
+  "info": {
+    "name": "comments",
+    "description": "users comments."
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "user": {
+      "model": "user",
+      "via": "comments",
+      "plugin": "users-permissions"
+    },
+    "comment": {
+      "type": "text"
+    },
+    "createdAt": {
+      "type": "date"
+    },
+    "UpdatedAt": {
+      "type": "date"
+    },
+    "Active": {
+      "type": "boolean"
+    },
+    "likes": {
+      "collection": "likes",
+      "via": "comment"
+    },
+    "hotel": {
+      "model": "hotels",
+      "via": "comments"
+    },
+    "plane": {
+      "model": "planes",
+      "via": "comments"
+    },
+    "restaurant": {
+      "model": "restaurants",
+      "via": "comments"
+    }
+  }
+}
